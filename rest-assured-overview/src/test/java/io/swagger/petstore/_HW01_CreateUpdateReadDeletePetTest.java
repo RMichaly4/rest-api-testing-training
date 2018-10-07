@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.swagger.petstore.base.BaseTest;
 import org.awaitility.Duration;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,8 @@ import static org.awaitility.Awaitility.await;
 import static org.hamcrest.Matchers.equalTo;
 
 public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
+
+    int petId = 888;
 
     @BeforeClass
     public void createPet() {
@@ -30,8 +33,8 @@ public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
     }
 
     @Test
-    public void testUpdateReadDeletePet() {
-        int petId = 888;
+    public void testUpdateReadPet() {
+        //int petId = 888;
 
         RestAssured.given()
                 .accept(ContentType.JSON)
@@ -63,29 +66,23 @@ public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
                         .then()
                         .extract().body().path("status");
             }
-
-
-            public void deletePet() {
-
-                RestAssured.given()
-                        .accept(ContentType.JSON)
-                        .header("api_key", "1234567890")
-                        .pathParam("id", petId)
-                        .when()
-                        .delete("https://petstore.swagger.io/v2/pet/{id}")
-                        .then()
-                        .statusCode(200);
-
-            }
-
-
-
         };
-
-
     }
 
 
-
+    @AfterClass
+    public void deletePet() {
+        RestAssured.given()
+                .accept(ContentType.JSON)
+                .header("api_key", "1234567890")
+                .pathParam("id", petId)
+                .when()
+                .delete("https://petstore.swagger.io/v2/pet/{id}")
+                .then()
+                .statusCode(200);
+    }
 
 }
+
+
+

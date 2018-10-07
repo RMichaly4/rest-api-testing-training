@@ -1,0 +1,18 @@
+{
+  "id": 888,
+  "category": {
+    "id": 77,
+    "name": "dinasaurs"
+  },
+  "name": "Buddy",
+  "photoUrls": [
+    "https://goo.gl/121qwerty", "https://goo.gl/256yyut"
+  ],
+  "tags": [
+    {
+      "id": 66,
+      "name": "T-Rex"
+    }
+  ],
+  "status": "available"
+}

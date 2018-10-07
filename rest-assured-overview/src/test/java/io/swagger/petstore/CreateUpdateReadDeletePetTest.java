@@ -14,7 +14,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Awaitility_UpdateAndGetPetTest extends BaseTest {
+public class CreateUpdateReadDeletePetTest extends BaseTest {
 
     @BeforeClass
     public void createPet() {
@@ -22,7 +22,7 @@ public class Awaitility_UpdateAndGetPetTest extends BaseTest {
                 .accept(ContentType.JSON)
                 .header("api_key", "1234567890")
                 .contentType(ContentType.JSON)
-                .body(new File("src/test/resources/pet.json"))
+                .body(new File("src/test/resources/pet2.json"))
                 .when()
                 .post("https://petstore.swagger.io/v2/pet")
                 .then()
@@ -30,14 +30,14 @@ public class Awaitility_UpdateAndGetPetTest extends BaseTest {
     }
 
     @Test
-    public void testUpdatePet() {
-        int petId = 91;
+    public void testUpdateReadDeletePet() {
+        int petId = 888;
 
         RestAssured.given()
                 .accept(ContentType.JSON)
                 .header("api_key", "1234567890")
                 .formParam("name", "auto_test_sample_pet_updated")
-                .formParam("status", "pending")
+                .formParam("status", "sold")
                 .pathParam("id", petId)
                 .when()
                 .post("https://petstore.swagger.io/v2/pet/{id}")
@@ -49,7 +49,7 @@ public class Awaitility_UpdateAndGetPetTest extends BaseTest {
                 .with()
                 .pollDelay(20, MILLISECONDS)
                 .pollInterval(Duration.FIVE_HUNDRED_MILLISECONDS)
-                .until(petStatus(petId), equalTo("pending"));
+                .until(petStatus(petId), equalTo("sold"));
     }
 
     private Callable<String> petStatus(int petId) {
@@ -63,10 +63,24 @@ public class Awaitility_UpdateAndGetPetTest extends BaseTest {
                         .then()
                         .extract().body().path("status");
             }
+
+
+            public void deletePet() {
+
+                RestAssured.given()
+                        .accept(ContentType.JSON)
+                        .header("api_key", "1234567890")
+                        .pathParam("id", petId)
+                        .when()
+                        .delete("https://petstore.swagger.io/v2/pet/{id}")
+                        .then()
+                        .statusCode(200);
+
+            }
+
+
+
         };
-
-
-
 
 
     }

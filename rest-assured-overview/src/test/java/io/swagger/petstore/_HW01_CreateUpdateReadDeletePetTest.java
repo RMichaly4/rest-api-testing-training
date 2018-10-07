@@ -14,7 +14,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.Matchers.equalTo;
 
-public class CreateUpdateReadDeletePetTest extends BaseTest {
+public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
 
     @BeforeClass
     public void createPet() {

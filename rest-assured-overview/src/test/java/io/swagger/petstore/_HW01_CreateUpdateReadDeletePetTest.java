@@ -39,7 +39,7 @@ public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
         RestAssured.given()
                 .accept(ContentType.JSON)
                 .header("api_key", "1234567890")
-                .formParam("name", "auto_test_sample_pet_updated")
+                .formParam("name", "Buddy 2 (updated)")
                 .formParam("status", "sold")
                 .pathParam("id", petId)
                 .when()

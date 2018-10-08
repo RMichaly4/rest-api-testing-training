@@ -12,6 +12,10 @@
     {
       "id": 66,
       "name": "T-Rex"
+    },
+    {
+      "id": 2,
+      "name": "Predators"
     }
   ],
   "status": "available"

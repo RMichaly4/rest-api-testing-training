@@ -20,17 +20,17 @@ public class _HW02_PetResourceTest extends BaseTest {
     private String petJsonToCreate = "{" +
             "\"id\":" + petId + "," +
             "\"category\":{" +
-            "\"id\":1," +
-            "\"name\":\"auto_test_sample_category\"" +
+            "\"id\":222," +
+            "\"name\":\"dinosaurs\"" +
             "}," +
-            "\"name\":\"auto_test_sample_pet\"," +
+            "\"name\":\"Buddy\"," +
             "\"photoUrls\":[" +
-            "\"https://auto-test-sample-photo\"" +
+            "\"https://fastpic.com/aaa111bbb.jpg\"" +
             "]," +
             "\"tags\":[" +
             "{" +
-            "\"id\":1," +
-            "\"name\":\"auto_test_sample_tag\"" +
+            "\"id\":12," +
+            "\"name\":\"predators\"" +
             "}" +
             "]," +
             "\"status\":\"available\"" +
@@ -39,27 +39,36 @@ public class _HW02_PetResourceTest extends BaseTest {
     private String petJsonToUpdate = "{" +
             "\"id\":" + petId + "," +
             "\"category\":{" +
-            "\"id\":2," +
-            "\"name\":\"auto_test_sample_category_updated\"" +
+            "\"id\":333," +
+            "\"name\":\"reptiles\"" +
             "}," +
-            "\"name\":\"auto_test_sample_pet_updated\"," +
+            "\"name\":\"Hellboy\"," +
             "\"photoUrls\":[" +
-            "\"https://auto-test-sample-photo-updated\"" +
+            "\"https://fastpic.com/aaa111bbb.jpg\"" +
+            "," +
+            "\"https://fastpic.com/ccc222ddd.jpg\"" +
             "]," +
             "\"tags\":[" +
             "{" +
-            "\"id\":2," +
-            "\"name\":\"auto_test_sample_tag_updated\"" +
+            "\"id\":9112," +
+            "\"name\":\"fossil\"" +
             "}" +
             "]," +
-            "\"status\":\"available\"" +
+            "\"status\":\"pending\"" +
             "}";
 
-    private RequestSpecification requestSpecification = new RequestSpecBuilder()
+    private RequestSpecification requestSpecificationCreateUpdate = new RequestSpecBuilder()
             .addHeader("api_key", "1234567890")
             .setAccept(JSON)
             .setBaseUri("https://petstore.swagger.io")
             .setBasePath("/v2/pet")
+            .build();
+
+    private RequestSpecification requestSpecificationFindByStatus = new RequestSpecBuilder()
+            .addHeader("api_key", "1234567890")
+            .setAccept(JSON)
+            .setBaseUri("https://petstore.swagger.io")
+            .setBasePath("/v2/pet/findByStatus?status=pending")
             .build();
 
     private ResponseSpecification responseSpecification = new ResponseSpecBuilder()
@@ -71,7 +80,7 @@ public class _HW02_PetResourceTest extends BaseTest {
     public void testCreatePet() {
 
         String createdPetJson = given()
-                .spec(requestSpecification)
+                .spec(requestSpecificationCreateUpdate)
                 .contentType(JSON)
                 .body(petJsonToCreate)
                 .when()
@@ -83,7 +92,7 @@ public class _HW02_PetResourceTest extends BaseTest {
         assertThat(createdPetJson).isEqualTo(petJsonToCreate);
 
         String updatedPetJson = given()
-                .spec(requestSpecification)
+                .spec(requestSpecificationCreateUpdate)
                 .contentType(JSON)
                 .body(petJsonToUpdate)
                 .when()
@@ -95,7 +104,7 @@ public class _HW02_PetResourceTest extends BaseTest {
         assertThat(updatedPetJson).isEqualTo(petJsonToUpdate);
 
         String fetchedPetJson = given()
-                .spec(requestSpecification)
+                .spec(requestSpecificationCreateUpdate)
                 .when()
                 .get(petId)
                 .then()
@@ -104,8 +113,23 @@ public class _HW02_PetResourceTest extends BaseTest {
 
         assertThat(fetchedPetJson).isEqualTo(updatedPetJson);
 
+
+        String foundByStatusPetJson = given()
+                .spec(requestSpecificationFindByStatus)
+                .contentType(JSON)
+                .when()
+                .get()
+                .then()
+                .spec(responseSpecification)
+                .extract().body().asString();
+
+        assertThat(foundByStatusPetJson).contains(updatedPetJson);
+
+
+
+
         String deletePetResponseBody = given()
-                .spec(requestSpecification)
+                .spec(requestSpecificationCreateUpdate)
                 .when()
                 .delete(petId)
                 .then()

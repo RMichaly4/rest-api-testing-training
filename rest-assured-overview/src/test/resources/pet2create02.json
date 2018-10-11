@@ -1,0 +1,22 @@
+{
+  "id": 999,
+  "category": {
+    "id": 77,
+    "name": "dinasaurs"
+  },
+  "name": "Fluffy",
+  "photoUrls": [
+    "https://goo.gl/222qwerty", "https://goo.gl/333klkvf"
+  ],
+  "tags": [
+    {
+      "id": 39,
+      "name": "Pterosaurus"
+    },
+    {
+      "id": 2,
+      "name": "Predators"
+    }
+  ],
+  "status": "available"
+}

@@ -25,7 +25,7 @@ public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
                 .accept(ContentType.JSON)
                 .header("api_key", "1234567890")
                 .contentType(ContentType.JSON)
-                .body(new File("src/test/resources/pet2.json"))
+                .body(new File("src/test/resources/pet2create01.json"))
                 .when()
                 .post("https://petstore.swagger.io/v2/pet")
                 .then()
@@ -68,7 +68,6 @@ public class _HW01_CreateUpdateReadDeletePetTest extends BaseTest {
             }
         };
     }
-
 
     @AfterClass
     public void deletePet() {

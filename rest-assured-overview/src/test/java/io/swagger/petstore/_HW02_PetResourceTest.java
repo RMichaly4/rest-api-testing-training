@@ -68,7 +68,7 @@ public class _HW02_PetResourceTest extends BaseTest {
             .addHeader("api_key", "1234567890")
             .setAccept(JSON)
             .setBaseUri("https://petstore.swagger.io")
-            .setBasePath("/v2/pet/findByStatus?status=pending")
+            .setBasePath("/v2/pet/findByStatus")
             .build();
 
     private ResponseSpecification responseSpecification = new ResponseSpecBuilder()
@@ -114,18 +114,16 @@ public class _HW02_PetResourceTest extends BaseTest {
         assertThat(fetchedPetJson).isEqualTo(updatedPetJson);
 
 
-        String foundByStatusPetJson = given()
+        String fetchedByStatusPetsJson = given()
                 .spec(requestSpecificationFindByStatus)
-                .contentType(JSON)
                 .when()
+                .queryParam("status", "pending")
                 .get()
                 .then()
                 .spec(responseSpecification)
                 .extract().body().asString();
 
-        assertThat(foundByStatusPetJson).contains(updatedPetJson);
-
-
+        assertThat(fetchedByStatusPetsJson).contains(updatedPetJson);
 
 
         String deletePetResponseBody = given()

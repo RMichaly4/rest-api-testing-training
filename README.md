@@ -34,7 +34,7 @@ https://petstore.swagger.io/#/pet
 # 1. create pet and verify body       #
 # 2. get created pet and verify body  # 
 # 3. update pet and verify body       #
-# 4. get created pet and verify body  #
+# 4. get updated pet and verify body  #
 # 5. delete pet                       #
 # 6. get pet and expect 404           #
 #######################################

@@ -31,10 +31,10 @@ https://petstore.swagger.io/#/pet
 Понимаю, что это задание частично дублирует предыдущее и повторяет то, что я сам показывал, но обязательно напишите эти тесты сами, продумывая то, как вы будете описывать запросы и какие проверки реализуете, подсматривайте в существующие примеры, но не делайте копи паст, постарайтесь разобраться и задавайте вопросы. Обязательно выполните задание, чтобы закрепить материал и быть готовыми к разбору следующих тем.
 
 #######################################
-# 1. create pet and verify body       #
-# 2. get created pet and verify body  # 
-# 3. update pet and verify body       #
-# 4. get updated pet and verify body  #
-# 5. delete pet                       #
-# 6. get pet and expect 404           #
+#  1. create pet and verify body      #
+#  2. get created pet and verify body # 
+#  3. update pet and verify body      #
+#  4. get updated pet and verify body #
+#  5. delete pet                      #
+#  6. get pet and expect 404          #
 #######################################

@@ -78,7 +78,7 @@ public class _HW02_PetResourceTest extends BaseTest {
 
     @Test
     public void testCreatePet() {
-
+//create pet and verify body
         String createdPetJson = given()
                 .spec(requestSpecificationCreateUpdate)
                 .contentType(JSON)
@@ -91,6 +91,7 @@ public class _HW02_PetResourceTest extends BaseTest {
 
         assertThat(createdPetJson).isEqualTo(petJsonToCreate);
 
+//update pet and verify body
         String updatedPetJson = given()
                 .spec(requestSpecificationCreateUpdate)
                 .contentType(JSON)
@@ -103,6 +104,7 @@ public class _HW02_PetResourceTest extends BaseTest {
 
         assertThat(updatedPetJson).isEqualTo(petJsonToUpdate);
 
+//get updated pet and verify body
         String fetchedPetJson = given()
                 .spec(requestSpecificationCreateUpdate)
                 .when()
@@ -113,7 +115,7 @@ public class _HW02_PetResourceTest extends BaseTest {
 
         assertThat(fetchedPetJson).isEqualTo(updatedPetJson);
 
-
+//get list of pets and verify that it contains updated pet
         String fetchedByStatusPetsJson = given()
                 .spec(requestSpecificationFindByStatus)
                 .when()
@@ -125,7 +127,7 @@ public class _HW02_PetResourceTest extends BaseTest {
 
         assertThat(fetchedByStatusPetsJson).contains(updatedPetJson);
 
-
+//delete pet and verify body
         String deletePetResponseBody = given()
                 .spec(requestSpecificationCreateUpdate)
                 .when()

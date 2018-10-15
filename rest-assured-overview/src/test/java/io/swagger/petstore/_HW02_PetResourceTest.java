@@ -91,6 +91,19 @@ public class _HW02_PetResourceTest extends BaseTest {
 
         assertThat(createdPetJson).isEqualTo(petJsonToCreate);
 
+//get created pet and verify body
+        String fetchedPetCreatedJson = given()
+                .spec(requestSpecificationCreateUpdate)
+                .when()
+                .get(petId)
+                .then()
+                .spec(responseSpecification)
+                .extract().body().asString();
+
+        assertThat(fetchedPetCreatedJson).isEqualTo(createdPetJson);
+
+
+
 //update pet and verify body
         String updatedPetJson = given()
                 .spec(requestSpecificationCreateUpdate)
@@ -105,7 +118,7 @@ public class _HW02_PetResourceTest extends BaseTest {
         assertThat(updatedPetJson).isEqualTo(petJsonToUpdate);
 
 //get updated pet and verify body
-        String fetchedPetJson = given()
+        String fetchedPetUpdatedJson = given()
                 .spec(requestSpecificationCreateUpdate)
                 .when()
                 .get(petId)
@@ -113,7 +126,7 @@ public class _HW02_PetResourceTest extends BaseTest {
                 .spec(responseSpecification)
                 .extract().body().asString();
 
-        assertThat(fetchedPetJson).isEqualTo(updatedPetJson);
+        assertThat(fetchedPetUpdatedJson).isEqualTo(updatedPetJson);
 
 //get list of pets and verify that it contains updated pet
         String fetchedByStatusPetsJson = given()

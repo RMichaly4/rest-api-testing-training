@@ -18,8 +18,6 @@ import static io.swagger.petstore.client.constant.PathParam.PET_ID;
 
 public class OrderClient extends PetStoreAbstractClient {
 
-    private static final String FILE_LOCATION = "src/test/resources/";
-
     @Step
     public static ValidatableResponse createOrder(Order order) {
 

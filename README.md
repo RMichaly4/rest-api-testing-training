@@ -38,3 +38,19 @@ https://petstore.swagger.io/#/pet
 #  5. delete pet                      #
 #  6. get pet and expect 404          #
 #######################################
+
+
+На 6-м занятии использовали туже презентацию, что и на 5-м.
+На выходных я добавил комит в гит, поэтому подтяните последнюю версию.
+
+По домашке:
+- работаме со store сущностью из swagger petstore и с auto-test-framework модулем демо проекта
+- добавить в model 
+https://github.com/erogowski/rest-api-testing-training/tree/master/auto-test-framework/src/main/java/io/swagger/petstore/model
+POJO класс для store сущности
+- добавить в model.builder
+https://github.com/erogowski/rest-api-testing-training/tree/master/auto-test-framework/src/main/java/io/swagger/petstore/model/builder
+builder класс для store сущности
+- добавить в client
+https://github.com/erogowski/rest-api-testing-training/tree/master/auto-test-framework/src/main/java/io/swagger/petstore/client
+клиентский класс для работы с store сущностью по аналогии с PetClient - реализуйте методы создания, чтения и удаления заказа

@@ -40,7 +40,6 @@ public abstract class BaseTest {
     protected Order getGenericOrder() {
 
         return OrderRegistry.getOrderBuilder()
-                .setStatus(OrderStatus.PLACED)
                 .build();
     }
 

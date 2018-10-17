@@ -23,7 +23,7 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder setShipDate(Timestamp shipDate) {
+    public OrderBuilder setShipDate(String shipDate) {
         order.setShipDate(shipDate);
         return this;
     }

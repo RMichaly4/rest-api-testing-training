@@ -10,7 +10,7 @@ public class Order {
 
     private long id;
     private long petId;
-    private Timestamp shipDate;
+    private String shipDate;
     private String status;
     private Boolean complete;
 
@@ -30,11 +30,11 @@ public class Order {
         this.petId = petId;
     }
 
-    public Timestamp getShipDate() {
+    public String getShipDate() {
         return shipDate;
     }
 
-    public void setShipDate(Timestamp shipDate) {
+    public void setShipDate(String shipDate) {
         this.shipDate = shipDate;
     }
 

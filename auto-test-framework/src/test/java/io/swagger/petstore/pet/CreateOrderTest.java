@@ -5,6 +5,7 @@ import io.swagger.petstore.client.OrderClient;
 import io.swagger.petstore.client.PetClient;
 import io.swagger.petstore.model.Order;
 import io.swagger.petstore.model.Pet;
+import io.swagger.petstore.model.builder.OrderBuilder;
 import io.swagger.petstore.model.registry.OrderRegistry;
 import io.swagger.petstore.model.registry.PetRegistry;
 import org.testng.annotations.AfterMethod;
@@ -46,8 +47,34 @@ public class CreateOrderTest extends BaseTest {
 
     @Test
     public void testCreateOrder_OnlyRequiredFields() {
+
         Order orderToCreate = OrderRegistry.getUniqueOrderWithOnlyRequiredFields();
-        testCreateOrder(orderToCreate);
+
+        Order expectedOrder = new OrderBuilder()
+                .setId(orderToCreate.getId())
+                .setPetId(orderToCreate.getPetId())
+                .setComplete(false)
+                .build();
+
+        orderId = orderToCreate.getId();
+
+        Order createdOrder = OrderClient.createOrder(orderToCreate)
+                .assertThat()
+                .statusCode(200)
+                .contentType(JSON)
+                .extract().body().as(Order.class);
+
+        assertThat(createdOrder)
+                .isNotNull()
+                .isEqualTo(expectedOrder);
+
+        Order fetchedOrder = OrderClient.getOrder(orderId)
+                .assertThat().statusCode(200)
+                .extract().body().as(Order.class);
+
+        assertThat(fetchedOrder)
+                .isNotNull()
+                .isEqualTo(expectedOrder);
     }
 
     private void testCreateOrder(Order orderToCreate) {

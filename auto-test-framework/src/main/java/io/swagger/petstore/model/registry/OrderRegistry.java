@@ -23,10 +23,10 @@ public class OrderRegistry {
         //sets only required Order fields
         return new OrderBuilder()
                 .setId(indexId)
-                .setPetId(indexPetId)
+                .setPetId(indexPetId);
                 //.setQuantity(1)
                 //.setShipDate("2018-10-17T21:00:06.324+0000")
                 //.setStatus(OrderStatus.PLACED)
-                .setComplete(false);
+                //.setComplete(false);
     }
 }

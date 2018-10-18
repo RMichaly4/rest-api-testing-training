@@ -1,4 +1,4 @@
-package io.swagger.petstore.pet;
+package io.swagger.petstore.order;
 
 import io.swagger.petstore.base.BaseTest;
 import io.swagger.petstore.client.OrderClient;

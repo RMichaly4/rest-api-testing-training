@@ -23,6 +23,11 @@ public class OrderBuilder {
         return this;
     }
 
+    public OrderBuilder setQuantity(int quantity) {
+        order.setQuantity(quantity);
+        return this;
+    }
+
     public OrderBuilder setShipDate(String shipDate) {
         order.setShipDate(shipDate);
         return this;

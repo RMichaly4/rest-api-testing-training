@@ -10,6 +10,7 @@ public class Order {
 
     private long id;
     private long petId;
+    private int quantity;
     private String shipDate;
     private String status;
     private Boolean complete;
@@ -28,6 +29,14 @@ public class Order {
 
     public void setPetId(long petId) {
         this.petId = petId;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getShipDate() {
@@ -62,6 +71,7 @@ public class Order {
         Order order = (Order) o;
         return id == order.id &&
                 petId == order.petId &&
+                quantity == order.quantity &&
                 Objects.equals(shipDate, order.shipDate) &&
                 Objects.equals(status, order.status) &&
                 Objects.equals(complete, order.complete);
@@ -69,7 +79,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, petId, shipDate, status, complete);
+        return Objects.hash(id, petId, quantity, shipDate, status, complete);
     }
 
     @Override
@@ -77,6 +87,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", petId=" + petId +
+                ", quantity=" + quantity +
                 ", shipDate=" + shipDate +
                 ", status='" + status + '\'' +
                 ", complete=" + complete +

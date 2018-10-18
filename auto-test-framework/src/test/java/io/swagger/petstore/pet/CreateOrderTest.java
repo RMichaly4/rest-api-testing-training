@@ -37,13 +37,15 @@ public class CreateOrderTest extends BaseTest {
     @Test(dataProvider = "status")
     public void testCreateOrder_AllFields_Status(String status) {
         Order orderToCreate = getGenericOrder();
+        orderToCreate.setQuantity(1);
+        orderToCreate.setShipDate("2018-10-17T21:00:06.324+0000");
         orderToCreate.setStatus(status);
 
         testCreateOrder(orderToCreate);
     }
 
     @Test
-    public void testCreatePet_OnlyRequiredFields() {
+    public void testCreateOrder_OnlyRequiredFields() {
         Order orderToCreate = OrderRegistry.getUniqueOrderWithOnlyRequiredFields();
         testCreateOrder(orderToCreate);
     }

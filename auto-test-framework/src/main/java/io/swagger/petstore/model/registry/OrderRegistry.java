@@ -24,9 +24,9 @@ public class OrderRegistry {
         return new OrderBuilder()
                 .setId(indexId)
                 .setPetId(indexPetId)
-                .setQuantity(1)
-                .setShipDate("2018-10-17T21:00:06.324+0000")
-                .setStatus(OrderStatus.PLACED)
+                //.setQuantity(1)
+                //.setShipDate("2018-10-17T21:00:06.324+0000")
+                //.setStatus(OrderStatus.PLACED)
                 .setComplete(false);
     }
 }

@@ -1,9 +1,5 @@
 package io.swagger.petstore.model;
 
-import com.sun.jmx.snmp.Timestamp;
-
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 public class Order {

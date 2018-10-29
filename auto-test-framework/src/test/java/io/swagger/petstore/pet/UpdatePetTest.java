@@ -66,6 +66,14 @@ public class UpdatePetTest extends BaseTest {
         assertThat(updatedPet)
                 .isNotNull()
                 .isEqualTo(petToUpdate);
+
+        Pet fetchedPet = PetClient.getPet(pet.getId())
+                .assertThat().statusCode(200)
+                .extract().body().as(Pet.class);
+
+        assertThat(fetchedPet)
+                .isNotNull()
+                .isEqualTo(updatedPet);
     }
 
     @Test

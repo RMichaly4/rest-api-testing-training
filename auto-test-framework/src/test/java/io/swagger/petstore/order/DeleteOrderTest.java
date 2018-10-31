@@ -1,7 +1,9 @@
 package io.swagger.petstore.order;
 
 import io.swagger.petstore.base.BaseTest;
+import io.swagger.petstore.client.OrderClient;
 import io.swagger.petstore.client.PetClient;
+import io.swagger.petstore.model.Order;
 import io.swagger.petstore.model.Pet;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,21 +13,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeleteOrderTest extends BaseTest {
 
-    private long petId;
+    private long orderId;
 
     @BeforeClass
-    public void createPet() {
-        Pet createdPet = PetClient.createPet(getGenericPetWithAllFields())
+    public void createOrder() {
+        Order createdOrder = OrderClient.createOrder(getGenericOrder())
                 .assertThat().statusCode(200)
-                .extract().body().as(Pet.class);
+                .extract().body().as(Order.class);
 
-        assertThat(createdPet).isNotNull();
-        petId = createdPet.getId();
+        assertThat(createdOrder).isNotNull();
+        orderId = createdOrder.getId();
     }
 
     @Test
-    public void testDeletePet() {
-        String responseBody = PetClient.deletePet(petId)
+    public void testDeleteOrder() {
+        String responseBody = OrderClient.deleteOrder(orderId)
                 .assertThat()
                 .statusCode(200)
                 .contentType(JSON)
@@ -35,7 +37,7 @@ public class DeleteOrderTest extends BaseTest {
                 .isNotNull()
                 .isEqualTo("");
 
-        PetClient.getPet(petId)
+        OrderClient.getOrder(orderId)
                 .assertThat().statusCode(404);
     }
 }

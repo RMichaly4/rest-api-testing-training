@@ -1,7 +1,9 @@
 package io.swagger.petstore.order;
 
 import io.swagger.petstore.base.BaseTest;
+import io.swagger.petstore.client.OrderClient;
 import io.swagger.petstore.client.PetClient;
+import io.swagger.petstore.model.Order;
 import io.swagger.petstore.model.Pet;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,72 +18,34 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetOrderTest extends BaseTest {
 
-    private Pet pendingPet1;
-    private Pet pendingPet2;
-    private Pet soldPet;
+    private Order sampleOrder;
 
     @BeforeClass
-    public void createPets() {
-        Pet pendingPet1ToCreate = getGenericPetWithAllFields();
-        pendingPet1ToCreate.setStatus(PENDING);
+    public void createOrder() {
+        Order sampleOrderToCreate = getGenericOrder();
 
-        pendingPet1 = PetClient.createPet(pendingPet1ToCreate)
+        sampleOrder = OrderClient.createOrder(sampleOrderToCreate)
                 .assertThat().statusCode(200)
-                .extract().body().as(Pet.class);
+                .extract().body().as(Order.class);
 
-        assertThat(pendingPet1).isNotNull();
-
-        Pet pendingPet2ToCreate = getGenericPetWithAllFields();
-        pendingPet2ToCreate.setStatus(PENDING);
-
-        pendingPet2 = PetClient.createPet(pendingPet2ToCreate)
-                .assertThat().statusCode(200)
-                .extract().body().as(Pet.class);
-
-        assertThat(pendingPet2).isNotNull();
-
-        Pet soldPetToCreate = getGenericPetWithAllFields();
-        soldPetToCreate.setStatus(SOLD);
-
-        soldPet = PetClient.createPet(soldPetToCreate)
-                .assertThat().statusCode(200)
-                .extract().body().as(Pet.class);
-
-        assertThat(soldPet).isNotNull();
+        assertThat(sampleOrder).isNotNull();
     }
 
     @AfterClass
-    public void deletePets() {
-        PetClient.deletePet(pendingPet1.getId());
-        PetClient.deletePet(pendingPet2.getId());
-        PetClient.deletePet(soldPet.getId());
+    public void deleteOrder() {
+        OrderClient.deleteOrder(sampleOrder.getId());
     }
 
     @Test
-    public void testGetPet() {
-        Pet fetchedPet = PetClient.getPet(pendingPet1.getId())
+    public void testGetOrder() {
+        Order fetchedOrder = OrderClient.getOrder(sampleOrder.getId())
                 .assertThat()
                 .statusCode(200)
                 .contentType(JSON)
-                .extract().body().as(Pet.class);
+                .extract().body().as(Order.class);
 
-        assertThat(fetchedPet)
+        assertThat(fetchedOrder)
                 .isNotNull()
-                .isEqualTo(pendingPet1);
-    }
-
-    @Test
-    public void testGetPets() {
-        List<Pet> fetchedPets = PetClient.getPets(PENDING)
-                .assertThat()
-                .statusCode(200)
-                .contentType(JSON)
-                .extract().jsonPath().getList(".", Pet.class);
-
-        assertThat(fetchedPets)
-                .isNotNull()
-                .isNotEmpty()
-                .contains(pendingPet1, pendingPet2)
-                .doesNotContain(soldPet);
+                .isEqualTo(sampleOrder);
     }
 }

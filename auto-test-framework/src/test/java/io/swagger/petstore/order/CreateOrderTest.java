@@ -38,9 +38,10 @@ public class CreateOrderTest extends BaseTest {
     @Test(dataProvider = "status")
     public void testCreateOrder_AllFields_Status(String status) {
         Order orderToCreate = getGenericOrder();
-        orderToCreate.setQuantity(1);
-        orderToCreate.setShipDate("2018-10-17T21:00:06.324+0000");
+        orderToCreate.setQuantity(2);
+        orderToCreate.setShipDate("2018-12-17T21:00:06.324+0000");
         orderToCreate.setStatus(status);
+        orderToCreate.setComplete(false);   //HOW TO TEST MULTIPLE VALUES: TRUE+FALSE
 
         testCreateOrder(orderToCreate);
     }

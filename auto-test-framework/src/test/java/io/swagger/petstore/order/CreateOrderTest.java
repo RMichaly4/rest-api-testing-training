@@ -28,20 +28,20 @@ public class CreateOrderTest extends BaseTest {
         OrderClient.deleteOrder(orderId);
     }
 
-    @DataProvider(name = "status")
+    @DataProvider(name = "statusAndIsComplete")
     public static Object[][] createData() {
         return new Object[][]{
-                {PLACED}, {APPROVED}, {DELIVERED}
+                {PLACED, true}, {APPROVED, true}, {DELIVERED, false}
         };
     }
 
-    @Test(dataProvider = "status")
-    public void testCreateOrder_AllFields_Status(String status) {
+    @Test(dataProvider = "statusAndIsComplete")
+    public void testCreateOrder_AllFields_Status(String status, boolean isComplete) {
         Order orderToCreate = getGenericOrder();
         orderToCreate.setQuantity(2);
         orderToCreate.setShipDate("2018-12-17T21:00:06.324+0000");
         orderToCreate.setStatus(status);
-        orderToCreate.setComplete(false);   //HOW TO TEST MULTIPLE VALUES: TRUE+FALSE
+        orderToCreate.setComplete(isComplete);   //HOW TO TEST MULTIPLE VALUES: TRUE+FALSE
 
         testCreateOrder(orderToCreate);
     }

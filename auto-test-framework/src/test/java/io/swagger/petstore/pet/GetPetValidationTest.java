@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GetPetValidationTest extends BaseTest {
 
     @Test
-    public void testDeletePet_NonexistentId() {
+    public void testGetPet_NonexistentId() {
         ApiResponse expectedApiResponse = new ApiResponseBuilder()
                 .setCode(1)
                 .setType(ResponseType.ERROR)

@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GetOrderValidationTest extends BaseTest {
 
     @Test
-    public void testDeleteOrder_NonexistentId() {
+    public void testGetOrder_NonexistentId() {
         ApiResponse expectedApiResponse = new ApiResponseBuilder()
                 .setCode(1)
                 .setType(ResponseType.ERROR)

@@ -1,7 +1,7 @@
 package io.swagger.petstore.model.builder;
 
 
-import com.sun.jmx.snmp.Timestamp;
+
 import io.swagger.petstore.model.Order;
 
 

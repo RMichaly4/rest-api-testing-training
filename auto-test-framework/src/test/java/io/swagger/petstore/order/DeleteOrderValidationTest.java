@@ -5,6 +5,7 @@ import io.swagger.petstore.client.OrderClient;
 import io.swagger.petstore.client.PetClient;
 import org.testng.annotations.Test;
 
+import static io.swagger.petstore.data.ResponseMessage.ORDER_NOT_FOUND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeleteOrderValidationTest extends BaseTest {
@@ -18,6 +19,6 @@ public class DeleteOrderValidationTest extends BaseTest {
 
         assertThat(responseBody)
                 .isNotNull()
-                .isEqualTo("Order not found");
+                .isEqualTo(ORDER_NOT_FOUND);
     }
 }
